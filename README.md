@@ -10,10 +10,13 @@ The functionality is:
 - Airflow is launched.
 - When a task is triggered, a `DockerOperator` task is launched.
 - The specific container will launch, with its associated command:
-	- e.g., `docker run am_tf_inference:latest python3 inference.py -t <INFERENCE TYPE>`
-	- `<INFERENCE_TYPE>` can be `rcon`, `new_rif`, or `fixpdf`
+	- e.g., `docker run inference:latest python3 main_inference.py -t <INFERENCE TYPE>`
+	- `<INFERENCE_TYPE>` can be any inference activity added to `inference/main_inference.py`
 
 ## Project Structure
 
+- dags: contains two example DAGs: one for testing `nvidia-smi` inside of the built container, and one for running inference.
+- data: contains example data from [Kaggle](https://www.kaggle.com/ldorigo/full-sentences-only).
+- docker: contains the Dockerfiles to build the inference containers.  These containers get an inference type as an incoming command. Copies over main_inference.py.
 - docker-compose.yaml: Contains the main entrypoint. Intended to launch Airflow.
-- docker: contains the Dockerfiles to build the inference containers.  These containers get an inference type as an incoming command.
+- inference: contains `main_inference.py`, the main file to be copied inside the `inference` container.
