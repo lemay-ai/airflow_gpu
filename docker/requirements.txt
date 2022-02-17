@@ -1,0 +1,7 @@
+transformers==4.1.1
+-f https://download.pytorch.org/whl/torch_stable.html
+torch===1.7.1+cu110
+pandas
+tqdm
+numpy
+sentencepiece
